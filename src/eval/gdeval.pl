@@ -19,6 +19,9 @@ my $USAGE = "usage: $0 [options] qrels run\n
         Average over the complete set of topics in the relevance judgments
         instead of the topics in the intersection of relevance judgments 
         and results.\n
+    -j value
+       Non-negative integer maximum gain value allowed in qrels file.
+       Default value is $MAX_JUDGMENT.\n
     -k value
         Non-negative integer depth of ranking to evaluate in range [1,inf].
         Default value is k=@{[($K)]}.\n
@@ -52,6 +55,12 @@ use strict 'vars';
     {
       $cflag = 1;
       shift @ARGV; 
+    }
+    elsif ($#ARGV >= 3 and ("-j" eq $ARGV[0]))
+    {
+        $MAX_JUDGMENT = int($ARGV[1]);
+        die $USAGE if ($MAX_JUDGMENT < 1);
+        shift @ARGV; shift @ARGV;
     }
     elsif ($#ARGV >= 3 and ("-k" eq $ARGV[0]))
     {
