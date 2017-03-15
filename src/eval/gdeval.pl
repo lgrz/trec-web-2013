@@ -255,7 +255,7 @@ sub processRun
     $topic =~ s/^.*\-//;
     die "$0: format error on line $. of \"$run\"\n"
 	unless
-	$topic =~ /^[0-9]+$/ && $q0 eq "Q0" && $rank =~ /^[0-9]+$/ && $runid;
+	$topic =~ /^[0-9]+$/ && $rank =~ /^[0-9]+$/ && $runid;
     $run[$#run + 1] = "$topic $docno $score";
   }
 
